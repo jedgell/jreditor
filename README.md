@@ -13,6 +13,12 @@ Authors
 * Jeremy Edgell (Classic Graphics)
 
 
+Example
+=======
+
+![Jreditor screenshot](example.png)
+
+
 Notes
 =====
 
