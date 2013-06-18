@@ -31,7 +31,7 @@ function main() {
 
 		var issue_key = jira.app.issue.getIssueKey();
 		var issue_summary = jQ('#summary-val').text();
-		if ( !issue_summary.match('/\.jQ/') ) {
+		if ( !issue_summary.match('/\.$/') ) {
 			issue_summary += '.';
 		}
 		var bg_color = jQ('#details-module').css('background-color');
