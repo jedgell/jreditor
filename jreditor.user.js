@@ -50,6 +50,9 @@ function main() {
 		jQ.getJSON(api_comment_url, function(data){
 			latest_comment_index = data.total - 1;
 			latest_comment_body = data.comments[latest_comment_index].body;
+			if ( !latest_comment_body.match('/\.$/') ) {
+				latest_comment_body += '.';
+			}
 		})
 		.fail(function() { /*do nothing*/ })
 		.always(function() {
