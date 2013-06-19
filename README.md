@@ -31,3 +31,5 @@ Example: An issue with key "ABC-123" and a summary of "My awesome JIRA summary" 
     ABC-123: My awesome JIRA summary.
     
 In cases where no period is present at the end of the summary, one will be added. It's just good grammar.
+
+If you run this user script without the assistance of a user script manager (for example, just adding it directly to the Chrome Extensions via dragging and dropping), this user script will attempt to run on every page you visit. 
