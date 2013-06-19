@@ -48,16 +48,18 @@ function main() {
 		var latest_comment_index, latest_comment_body;
 		var api_comment_url = AJS.params.baseURL + '/rest/api/latest/issue/' + issue_key + '/comment?expand';
 		jQ.getJSON(api_comment_url, function(data){
-			latest_comment_index = data.total - 1;
-			latest_comment_body = data.comments[latest_comment_index].body;
-			if ( !latest_comment_body.match('/\.$/') ) {
-				latest_comment_body += '.';
+			if (data.total > 0) {
+				latest_comment_index = data.total - 1;
+				latest_comment_body = data.comments[latest_comment_index].body;
+				if ( !latest_comment_body.match('/\.$/') ) {
+					latest_comment_body += '.';
+				}
 			}
 		})
 		.fail(function() { /*do nothing*/ })
-		.always(function() {
+		.always(function(data) {
 			// We're waiting for the response from the REST service to do anything.
-			if (latest_comment_body.length > 0){
+			if (data.total > 0){
 				messages += '<li>Message from most recent Comment: <input class="commit-message" type="text" name="" value="' + issue_key + ': ' + latest_comment_body + '" /></li>';
 			}
 			messages += '</ul>';

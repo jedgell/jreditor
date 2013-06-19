@@ -16,7 +16,7 @@ Authors
 Example
 =======
 
-![Jreditor screenshot](example.png)
+![Jreditor screenshot](example.jpg)
 
 
 Notes
