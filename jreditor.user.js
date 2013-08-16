@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name       		Commit message from JIRA
+// @name       		JiRa Editor (jreditor)
 // @namespace  		http://knowclassic.com/
 // @version    		0.1-dev
-// @description  	Uses ticket information from JIRA to cobble together a basic version control commit message.
+// @description  	Uses ticket information from JIRA to cobble together a basic messages.
 // @include	   		https://jira.*
 // @grant       	none
 // @copyright  		2013+, Classic Graphics
@@ -32,6 +32,8 @@ function main() {
 	if (jira.app && is_issue > 0 && issue_type != 'Epic' && !is_anonymous) {
 
 		var issue_key = jira.app.issue.getIssueKey();
+
+    // Add a suggested commit message.
 
 		var issue_summary = jQ('#summary-val').text();
 		if ( !issue_summary.match('/\.$/') ) {
@@ -71,6 +73,16 @@ function main() {
 				jQ(this).select();
 			});
 		});
+
+    // Add file names from "Attachments" to comment box.
+    jQ('textarea#comment[data-issuekey="' + issue_key + '"]').before('<input id="copy-file-names" type="button" value="Copy File Names" />');
+    jQ('#copy-file-names').click(function(){
+        jQ('dt.attachment-title a').each(function(){
+          var comment_val = jQ('textarea#comment[data-issuekey="' + issue_key + '"]').val();
+          var new_comment_val = comment_val + "\n" + '[^' + jQ(this).html().replace(/(^\s+|\s+$)/g, '') + ']';
+          jQ('textarea#comment[data-issuekey="' + issue_key + '"]').val(new_comment_val);
+        });        
+    });
 	}
 }
 
