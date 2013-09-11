@@ -35,8 +35,8 @@ function main() {
 
     // Add a suggested commit message.
 
-		var issue_summary = jQ('#summary-val').text();
-		if ( !issue_summary.match('/\.$/') ) {
+		var issue_summary = jQ('#summary-val').text().replace(/\"/g, "&quot;");
+		if ( !issue_summary.match(/\.$/) ) {
 			issue_summary += '.';
 		}
 		var bg_color = jQ('#details-module').css('background-color');
@@ -52,7 +52,7 @@ function main() {
 		jQ.getJSON(api_comment_url, function(data){
 			if (data.total > 0) {
 				latest_comment_index = data.total - 1;
-				latest_comment_body = data.comments[latest_comment_index].body;
+				latest_comment_body = data.comments[latest_comment_index].body.replace(/\"/g, "&quot;");
 				if ( !latest_comment_body.match('/\.$/') ) {
 					latest_comment_body += '.';
 				}
