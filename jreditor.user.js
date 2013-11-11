@@ -53,7 +53,7 @@ function main() {
 			if (data.total > 0) {
 				latest_comment_index = data.total - 1;
 				latest_comment_body = data.comments[latest_comment_index].body.replace(/\"/g, "&quot;");
-				if ( !latest_comment_body.match('/\.$/') ) {
+				if ( !latest_comment_body.match(/\.$/) ) {
 					latest_comment_body += '.';
 				}
 			}
